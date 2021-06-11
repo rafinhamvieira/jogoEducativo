@@ -12,7 +12,7 @@ altura = 600
 fps = pygame.time.Clock()
 fundo = pygame.image.load("assets/sky.png")
 display = pygame.display.set_mode((largura, altura))
-icone = pygame.image.load("assets/icone.ico")
+icone = pygame.image.load("assets/icone.jpg")
 pygame.display.set_icon(icone)
 pygame.display.set_caption("Não deixe a criança ser influenciada! ")
 criancaBoneco = pygame.image.load("assets/crianca.png")
@@ -34,7 +34,7 @@ def text_objects(texto, fonte):
     return textSurface, textSurface.get_rect()
 
 def message_display(text):
-    fonte = pygame.font.Font("freesansbold.ttf", 115)
+    fonte = pygame.font.Font("freesansbold.ttf", 40)
     TextSurf, TextRect = text_objects(text, fonte)
     TextRect.center = ((largura/2), (altura/2))
     display.blit(TextSurf, TextRect)
@@ -43,8 +43,8 @@ def message_display(text):
     jogo()
 
 def dead():
-    message_display("A criança foi influenciada e está muito mal!")
-
+    message_display("A criança foi influenciada e está mal! ")
+    
 def escrevendoPlacar(desvios):
     font = pygame.font.SysFont(None, 25)
     texto = font.render("Desvios:"+str(desvios), True, branco)
@@ -59,14 +59,14 @@ def jogo():
     movimentoX = 0
     alcoolPosicaoX = largura * 0.45
     alcoolPosicaoY = -220
-    alcoolLargura = 50
-    alcoolAltura = 250
+    alcoolLargura = 45
+    alcoolAltura = 98
     alcoolVelocidade = 5
 
     drogasPosicaoX = largura * 0.45
     drogasPosicaoY = -220
-    drogasLargura = 50
-    drogasAltura = 250
+    drogasLargura = 45
+    drogasAltura = 101
     drogasVelocidade = 5
     desvios = 0
 
