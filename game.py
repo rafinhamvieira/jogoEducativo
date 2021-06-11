@@ -7,10 +7,10 @@ pygame.init()
 
 loseSound = pygame.mixer.Sound("assets/lose.wav")
 waterSound = pygame.mixer.Sound("assets/water.mp3")
-largura = 800
-altura = 600
+largura = 1280
+altura = 720
 fps = pygame.time.Clock()
-fundo = pygame.image.load("assets/sky.png")
+fundo = pygame.image.load("assets/parque2.png")
 display = pygame.display.set_mode((largura, altura))
 icone = pygame.image.load("assets/icone.jpg")
 pygame.display.set_icon(icone)
@@ -92,8 +92,8 @@ def jogo():
         display.blit(criancaBoneco, (criancaPosicaoX, criancaPosicaoY))
         if criancaPosicaoX < 0:
             criancaPosicaoX = 0
-        elif criancaPosicaoX > 680:
-            criancaPosicaoX = 680
+        elif criancaPosicaoX > 1100:
+            criancaPosicaoX = 1100
         display.blit(criancaBoneco, (criancaPosicaoX, criancaPosicaoY))  # inserir imagem da tela
 
         #quando ultrapassa a barreira ele começa em um lugar novo
