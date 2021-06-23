@@ -1,7 +1,16 @@
 import pygame
 import random
-import time
+from functionBasic import delay, cleanerScreen
 
+archive = open('archive.txt', 'w')
+archive.close()
+archive = open('archive.txt', 'a')
+cleanerScreen()
+nome = input('\n Qual o seu nome? ')
+email = input('\n Qual seu email? ')
+archive.write(' ' + nome + '\n ' + email)
+print('\n Clique na tela quando ela abrir!')
+delay()
 
 pygame.init()
 
@@ -22,8 +31,6 @@ movimentoX = 0
 alcool = pygame.image.load("assets/alcool.png")
 drogas = pygame.image.load("assets/drogas.png")
 
-
-
 #inicio cores https://www.rapidtables.com/web/color/RGB_Color.html
 branco = (255,255,255)
 preto = (0,0,0)
@@ -39,7 +46,7 @@ def message_display(text):
     TextRect.center = ((largura/2), (altura/2))
     display.blit(TextSurf, TextRect)
     pygame.display.update()
-    time.sleep(3)
+    delay()
     jogo()
 
 def dead():
@@ -62,12 +69,6 @@ def jogo():
     alcoolLargura = 45
     alcoolAltura = 98
     alcoolVelocidade = 5
-
-    drogasPosicaoX = largura * 0.45
-    drogasPosicaoY = -220
-    drogasLargura = 45
-    drogasAltura = 101
-    drogasVelocidade = 5
     desvios = 0
 
     while True:
@@ -98,34 +99,19 @@ def jogo():
 
         #quando ultrapassa a barreira ele começa em um lugar novo
         display.blit(alcool, (alcoolPosicaoX, alcoolPosicaoY))
-        #display.blit(drogas, (drogasPosicaoX, drogasPosicaoY))
         alcoolPosicaoY = alcoolPosicaoY + alcoolVelocidade
-        drogasPosicaoY = drogasPosicaoY + drogasVelocidade
         if alcoolPosicaoY > altura :
             pygame.mixer.Sound.play(waterSound)
             alcoolPosicaoY = -220
             alcoolVelocidade += 0.3
             alcoolPosicaoX = random.randrange(0, largura-50)
-            desvios += 1
-        """if drogasPosicaoY > altura :
-            pygame.mixer.Sound.play(waterSound)
-            alcoolPosicaoY = -220
-            alcoolVelocidade += 0.3
-            alcoolPosicaoX = random.randrange(0, largura-50)
-            desvios += 1
-            """
         #fim da barreira
         # (ini)análise de colisão:
         if criancaPosicaoY < alcoolPosicaoY + alcoolAltura:
             if criancaPosicaoX < alcoolPosicaoX and criancaPosicaoX+criancaLargura > alcoolPosicaoX or alcoolPosicaoX+alcoolLargura > criancaPosicaoX and alcoolPosicaoX+alcoolLargura < criancaPosicaoX+criancaLargura:
                 dead()
-        #if criancaPosicaoY < drogasPosicaoY + drogasAltura:
-            #if criancaPosicaoX < drogasPosicaoX and criancaPosicaoX+criancaLargura > drogasPosicaoX or drogasPosicaoX+drogasLargura > criancaPosicaoX and drogasPosicaoX+drogasLargura < criancaPosicaoX+criancaLargura:
-                #dead()
-
         # [fim]análise de colisão:
         escrevendoPlacar(desvios)
-        
         fps.tick(60)
         pygame.display.update()
 jogo()
