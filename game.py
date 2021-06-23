@@ -9,6 +9,7 @@ cleanerScreen()
 nome = input('\n Qual o seu nome? ')
 email = input('\n Qual seu email? ')
 archive.write(' ' + nome + '\n ' + email)
+archive.close()
 print('\n Clique na tela quando ela abrir!')
 delay()
 
